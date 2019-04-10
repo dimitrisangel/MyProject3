@@ -31,6 +31,17 @@ public class DataSource {
         ArrayList<List> lists = new ArrayList<>();
         Cursor cursor = database.query(SQLiteHelper.LIST_TABLE, listsAllColums, null, null, null, null, null);
 
+        cursor.moveToFirst();
+
+        while (!cursor.isAfterLast()){
+            List list = new List();
+            list.setId(cursor.getInt(0));
+            list.setName(cursor.getString(1));
+
+
+            lists.add(list);
+            cursor.moveToNext();
+        }
         return lists;
     }
 
